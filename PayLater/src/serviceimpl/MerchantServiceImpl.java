@@ -19,7 +19,7 @@ public class MerchantServiceImpl implements MerchantService{
 		merchant.setEmail(s[3]);
 		merchant.setDiscount(Float.parseFloat((s[4])));
 		ObjectOutputStream outputStream=new ObjectOutputStream
-				(new FileOutputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/object.txt"));
+				(new FileOutputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/merchant.txt"));
 		outputStream.writeObject(merchant);
 		System.out.println(merchant.toString());
 	}

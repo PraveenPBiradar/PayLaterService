@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(s[3]);
 		user.setLimit(Integer.parseInt(s[4]));
 		ObjectOutputStream outputStream=new ObjectOutputStream
-				(new FileOutputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/object.txt"));
+				(new FileOutputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/user.txt"));
 		outputStream.writeObject(user);
 		System.out.println(user.toString());
 	}

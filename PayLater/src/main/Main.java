@@ -24,7 +24,6 @@ public class Main {
 		configureObjects();
 		String input=br.readLine();
 		System.out.println("input ===> "+input);
-		System.out.println(GenericClass.splitString(input)[1]);
 		if(GenericClass.splitString(input)[1].equalsIgnoreCase("user")) {
 			createUser(input);
 		}

@@ -14,7 +14,7 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
 	public void createTransaction(String input) throws FileNotFoundException, IOException, ClassNotFoundException {
 		String s[]=GenericClass.splitString(input);
-		ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/object.txt"));
+		ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/user.txt"));
 		User user=(User)inputStream.readObject();
 		if(user.getName().equalsIgnoreCase(s[2])) {
 			if(user.getLimit()<=Integer.parseInt(s[4])){

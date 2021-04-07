@@ -1,6 +1,8 @@
 package models;
 
-public class Merchant {
+import java.io.Serializable;
+
+public class Merchant implements Serializable {
 	private String name;
 	private String email;
 	private float discount;
