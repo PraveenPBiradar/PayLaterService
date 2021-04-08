@@ -1,12 +1,15 @@
 package models;
 
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
 	private String name;
 	private String email;
 	private int limit;
+	
+	public User(String name,String email,int limit) {
+		this.name=name;
+		this.email=email;
+		this.limit=limit;
+	}
 	
 	public String getName() {
 		return name;

@@ -1,11 +1,15 @@
 package models;
 
-import java.io.Serializable;
-
-public class Merchant implements Serializable {
+public class Merchant {
 	private String name;
 	private String email;
 	private float discount;
+	
+	public Merchant(String name,String email,float discount) {
+		this.name=name;
+		this.email=email;
+		this.discount=discount;
+	}
 	
 	public String getName() {
 		return name;

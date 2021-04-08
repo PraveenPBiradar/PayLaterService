@@ -1,32 +1,36 @@
 package serviceimpl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
+import exception.TransactionRejectedCreditLimitReached;
 import generic.GenericClass;
 import models.User;
 import service.TransactionService;
+import service.UserService;
 
 public class TransactionServiceImpl implements TransactionService {
 
+	private UserService userService;
+	int limit=0;
+
+	public TransactionServiceImpl(UserService userService) {
+		this.userService=userService;
+	}
+
 	@Override
-	public void createTransaction(String input) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void createTransaction(String input) {
 		String s[]=GenericClass.splitString(input);
-		ObjectInputStream inputStream=new ObjectInputStream(new FileInputStream("/Users/praveenbiradar/Documents/prep/ood/objectsood/user.txt"));
-		User user=(User)inputStream.readObject();
+		User user=userService.getUser(s[2]);
 		if(user.getName().equalsIgnoreCase(s[2])) {
-			if(user.getLimit()<=Integer.parseInt(s[4])){
-				System.out.println("Success");
+			if(Integer.parseInt(s[4])<=user.getLimit()){
+				limit=user.getLimit()-Integer.parseInt(s[4]);
+				if(limit<=user.getLimit()) {
+					user.setLimit(limit);
+				}
 			}
 			else {
-				System.out.println("Rejected");
+				System.out.println("rejected! (reason: credit limit)");
 			}
 		}
-		else {
-			System.out.println("No user");
-		}
+
 	}
 
 }

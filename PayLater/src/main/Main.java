@@ -1,7 +1,6 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -22,37 +21,39 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		configureObjects();
-		String input=br.readLine();
-		System.out.println("input ===> "+input);
-		if(GenericClass.splitString(input)[1].equalsIgnoreCase("user")) {
-			createUser(input);
+		while(true) {
+			String input=br.readLine();
+			System.out.println("input ===> "+input);
+			if(GenericClass.splitString(input)[1].equalsIgnoreCase("user")) {
+				createUser(input);
+			}
+			if(GenericClass.splitString(input)[1].equalsIgnoreCase("merchant")) {
+				createMerchant(input);
+			}
+			if(GenericClass.splitString(input)[1].equalsIgnoreCase("txn")) {
+				checkUserAndCreateTxn(input);
+			}
+			if(GenericClass.splitString(input)[0].equalsIgnoreCase("update")) {
+				checkUserAndCreateTxn(input);
+			}
 		}
-		if(GenericClass.splitString(input)[1].equalsIgnoreCase("merchant")) {
-			createMerchant(input);
-		}
-		if(GenericClass.splitString(input)[1].equalsIgnoreCase("txn")) {
-			checkUserAndCreateTxn(input);
-		}
-
 	}
-
 
 	private static void configureObjects() {
 		userService=new UserServiceImpl();
 		merchantService=new MerchantServiceImpl();
-		txnService=new TransactionServiceImpl();
+		txnService=new TransactionServiceImpl(userService);
 	}
 
-	public static void createUser(String input) throws FileNotFoundException, IOException {
-		System.out.println(userService);
+	public static void createUser(String input) {
 		userService.createUser(input);
 	}
 
-	public static void createMerchant(String input) throws FileNotFoundException, IOException {
+	public static void createMerchant(String input){
 		merchantService.createMerchant(input);
 	}
 
-	private static void checkUserAndCreateTxn(String input) throws FileNotFoundException, IOException, ClassNotFoundException {
+	private static void checkUserAndCreateTxn(String input) {
 		txnService.createTransaction(input);
 	}
 }
