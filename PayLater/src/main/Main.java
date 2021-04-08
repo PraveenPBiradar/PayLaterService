@@ -19,11 +19,10 @@ public class Main {
 	private static MerchantService merchantService;
 	private static TransactionService txnService;
 
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException{
 		configureObjects();
 		while(true) {
 			String input=br.readLine();
-			System.out.println("input ===> "+input);
 			if(GenericClass.splitString(input)[1].equalsIgnoreCase("user")) {
 				createUser(input);
 			}
